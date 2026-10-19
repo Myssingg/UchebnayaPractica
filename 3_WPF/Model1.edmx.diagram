@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bcc2b45a0ee44b748c247f4b54d8ee2c" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="Model.accountantBills" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.accountants" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.accountantServices" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.administrators" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.analyzerOperations" Width="1.5" PointX="11" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.analyzers" Width="1.5" PointX="8.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.insuranceCompany" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.insuranceTypes" Width="1.5" PointX="3.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.laborants" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.laborantServices" Width="1.5" PointX="15.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.laboratoryServices" Width="1.5" PointX="13" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.orders" Width="1.5" PointX="8" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.orderStatuses" Width="1.5" PointX="5.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.passport" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.patients" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.providedServises" Width="1.5" PointX="11" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.services" Width="1.5" PointX="10.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.servicesInOrder" Width="1.5" PointX="10.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.types" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.users" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_accountantBills_accountants" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_accountantBills_insuranceCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_accountantServices_accountants" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_analyzerOperations_analyzers" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_providedServises_analyzers" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_patients_insuranceCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_patients_insuranceTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_laborantServices_laborants" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_providedServises_laborants" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_laborantServices_laboratoryServices" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_laboratoryServices_services" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_orders_orderStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_servicesInOrder_orders" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_patients_passport" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_users_types" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.enterHistory" Width="1.5" PointX="5.25" PointY="12.625" />
+        <AssociationConnector Association="Model.FK_enterHistory_types" />
+        <AssociationConnector Association="Model.FK_enterHistory_users" />
+        <AssociationConnector Association="Model.FK_servicesInOrder_laboratoryServices" />
+        <AssociationConnector Association="Model.FK_patients_orders" />
+        <AssociationConnector Association="Model.FK_servicesInOrder_services" />
+        <AssociationConnector Association="Model.FK_administrators_users" />
+        <AssociationConnector Association="Model.FK_laborants_users" />
+        <AssociationConnector Association="Model.FK_accountants_users" />
+        <EntityTypeShape EntityType="Model.serviceStatuses" Width="1.5" PointX="12.375" PointY="10.875" />
+        <AssociationConnector Association="Model.FK_servicesInOrder_seviceStatuses1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

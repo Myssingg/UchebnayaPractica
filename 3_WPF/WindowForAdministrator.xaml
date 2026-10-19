@@ -1,0 +1,159 @@
+﻿<Window x:Class="_3_WPF.WindowForAdministrator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_3_WPF"
+        mc:Ignorable="d"
+        Title="WindowForAdministrator" Height="500" Width="800">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="avatar" Height="50" Width="50" Margin="5" Stretch="UniformToFill"/>
+            <WrapPanel Orientation="Vertical">
+                <TextBlock x:Name="userInfo" Margin="5" VerticalAlignment="Center" FontSize="18"/>
+                <TextBlock x:Name="Timer" FontSize="18" FontWeight="Black" VerticalAlignment="Center"/>
+            </WrapPanel>
+        </StackPanel>
+
+        <TabControl Margin="10" Background="Azure">
+            <TabControl.Template>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- 1. Верхняя панель (Заголовки + Кнопка) -->
+                        <DockPanel Grid.Row="0" LastChildFill="False">
+                            <!-- Место, где WPF рисует ваши TabItem (Товары, Заказы) -->
+                            <TabPanel IsItemsHost="True" DockPanel.Dock="Left" VerticalAlignment="Bottom" />
+
+                            <!-- Ваша реальная кнопка "Выйти" справа -->
+                            <Button Content="Выйти" 
+                Click="TabItem_Click" 
+                DockPanel.Dock="Right" 
+                Margin="0,0,5,0"    
+                Padding="10,2"
+                Background="#FFECECEC" />
+                        </DockPanel>
+
+                        <!-- 2. Область контента (само содержимое вкладок) -->
+                        <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="0,1,0,0">
+                            <ContentPresenter ContentSource="SelectedContent" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </TabControl.Template>
+
+            <TabItem Header="Сформировать отчеты" x:Name="tab_createReports">
+
+            </TabItem>
+
+            <TabItem Header="Все пользователи" x:Name="tab_users">
+                <StackPanel Orientation="Vertical">
+                    <WrapPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="Логин для фильтрации" Padding="5"/>
+                        <TextBox x:Name="filterLoginUsers" VerticalAlignment="Center" Width="200" TextChanged="filterLoginUsers_TextChanged"/>
+                    </WrapPanel>
+
+                    <DataGrid x:Name="listUsers" 
+                              Height="300"
+                              AutoGenerateColumns="False" 
+                              IsReadOnly="True" 
+                              CanUserSortColumns="True"
+                              SelectionMode="Single"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="login" Width="100" Binding="{Binding login}" />
+                            <DataGridTextColumn Header="ip адрес" Width="150" Binding="{Binding ip}" />
+                            <DataGridTextColumn Header="Время входа" Width="150" Binding="{Binding lastenter}" />
+                            <DataGridTextColumn Header="Роль" Width="100" Binding="{Binding types.type}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="История входа" x:Name="tab_history">
+                <StackPanel Orientation="Vertical">
+                    <WrapPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="Логин для фильтрации" Padding="5"/>
+                        <TextBox x:Name="filterLoginHistory" VerticalAlignment="Center" Width="200" TextChanged="filterLoginHistory_TextChanged"/>
+                    </WrapPanel>
+
+                    <DataGrid x:Name="listHistory" 
+                              AutoGenerateColumns="False" 
+                              IsReadOnly="True" 
+                              Height="300"
+                              CanUserSortColumns="True"
+                              SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код" Width="50" Binding="{Binding code}" />
+                            <DataGridTextColumn Header="login" Width="150" Binding="{Binding userLogin}" />
+                            <DataGridTextColumn Header="Время входа" Width="150" Binding="{Binding dateTimeSeen}" />
+                            <DataGridTextColumn Header="Роль" Width="150" Binding="{Binding types.type}" />
+                            <DataGridTextColumn Header="Успех" Width="50" Binding="{Binding success}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Добавить сотрудника" x:Name="tab_addStaff" Loaded="tab_addStaff_Loaded">
+                <StackPanel Background="Azure" Margin="10" Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Height="350">
+                        <TextBlock Text="Должность" Padding="5" Height="30" Margin="5"/>
+
+                        <TextBlock Text="Фамилия" Padding="5" Height="30" Margin="5"/>
+
+                        <TextBlock Text="Имя" Padding="5" Height="30" Margin="5"/>
+
+                        <TextBlock Text="Отчество" Padding="5" Height="30" Margin="5"/>
+
+                        <TextBlock Text="Номер телефона" Padding="5" Height="30" Margin="5"/>
+
+                        <TextBlock Text="Email" Padding="5" Height="30" Margin="5"/>
+
+                        <TextBlock Text="Логин" Padding="5" Height="30" Margin="5"/>
+
+                        <TextBlock Text="Пароль" Padding="5" Height="30" Margin="5"/>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Height="350"  x:Name="panel">
+                        <ComboBox x:Name="comboBox_role" Padding="5" Width="200" Height="30" Margin="5" SelectionChanged="comboBox_role_SelectionChanged"/>
+
+                        <TextBox x:Name="textBox_Surname" Padding="5" Height="30" Margin="5"/>
+
+                        <TextBox x:Name="textBox_Name" Padding="5" Height="30" Margin="5"/>
+
+                        <TextBox x:Name="textBox_Patronymic" Padding="5" Height="30" Margin="5"/>
+
+                        <TextBox x:Name="textBox_phoneNumber" Padding="5" Height="30" Margin="5"/>
+
+                        <TextBox x:Name="textBox_Email" Padding="5" Height="30" Margin="5"/>
+
+                        <TextBox x:Name="textBox_Login" Padding="5" Height="30" Margin="5"/>
+
+                        <TextBox x:Name="textBox_Password" Padding="5" Height="30" Margin="5"/>
+
+                    </StackPanel>
+
+                    <StackPanel x:Name="panelForLaborant" Orientation="Vertical" Height="350" Visibility="Collapsed">
+                        <ComboBox Name="comboBox_Service" Padding="5" Width="200" Height="30" Margin="5"/>
+                        <Button x:Name="btn_addService" Content="Добавить" Padding="5" HorizontalAlignment="Center" Click="btn_addService_Click"/>
+                        <DataGrid x:Name="listServices" Margin="5" Height="250" Padding="5" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Услуга" Binding="{Binding name}" Width="187.5"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+
+                    <DockPanel Height="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Content="Добавить сотрудника" Padding="5" VerticalAlignment="Center" HorizontalAlignment="Center" Height="30" x:Name="btn_addStaff" Click="btn_addStaff_Click"/>
+                    </DockPanel>
+                </StackPanel>
+            </TabItem>
+
+        </TabControl>
+    </StackPanel>
+</Window>

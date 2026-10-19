@@ -1,0 +1,47 @@
+﻿<Window x:Class="_3_WPF.DialogCreatePatient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_3_WPF"
+        mc:Ignorable="d"
+        Title="DialogCreatePatient" Height="680" Width="400"
+        FontFamily="Tahoma" FontSize="14" >
+    <StackPanel Orientation="Vertical" Background="Azure" Margin="10">
+        <TextBlock Text="Фамилия" Padding="5" HorizontalAlignment="Center"/>
+        <TextBox x:Name="textBox_Surname" Width="200" Padding="5" IsReadOnly="True"/>
+
+        <TextBlock Text="Имя" Padding="5" HorizontalAlignment="Center"/>
+        <TextBox x:Name="textBox_Name" Width="200" Padding="5" IsReadOnly="True"/>
+
+        <TextBlock Text="Отчество" Padding="5" HorizontalAlignment="Center"/>
+        <TextBox x:Name="textBox_Patronymic" Width="200" Padding="5" IsReadOnly="True"/>
+
+        <TextBlock Padding="5" HorizontalAlignment="Center" Text="Дата рождения"/>
+        <DatePicker x:Name="datePicker_DateOfBirth" Padding="5" Width="200"/>
+
+        <TextBlock Text="Серия и номер паспорта" Padding="5" HorizontalAlignment="Center"/>
+        <DockPanel Width="200">
+            <TextBox x:Name="textBox_PassportSeries" Padding="5" Width="60" Margin="0,0,20,0" DockPanel.Dock="Left"/>
+            <TextBox x:Name="textBox_PassportNumber" Padding="5" Width="120" DockPanel.Dock="Right"/>
+        </DockPanel>
+
+        <TextBlock Text="Номер телефона" Padding="5" HorizontalAlignment="Center"/>
+        <TextBox x:Name="textBox_PhoneNumber" Padding="5" Width="200"/>
+
+        <TextBlock Text="Email" Padding="5" HorizontalAlignment="Center"/>
+        <TextBox x:Name="textBox_Email" Padding="5" Width="200"/>
+
+        <TextBlock Text="Номер страхового полиса" Padding="5" HorizontalAlignment="Center"/>
+        <TextBox x:Name="textBox_InsuranceNumber" Padding="5" Width="200"/>
+
+        <TextBlock Text="Тип страхового полиса" Padding="5" HorizontalAlignment="Center"/>
+        <ComboBox x:Name="comboBox_InsuranceType" Padding="5" Width="200"/>
+
+        <TextBlock Text="Страховая компания" Padding="5" HorizontalAlignment="Center"/>
+        <ComboBox x:Name="comboBox_InsuranceCompany" Padding="5" Width="200"/>
+
+        <Button Content="Создать клиента" Click="Button_Click" Padding="5" Width="200" Margin="15"/>
+
+    </StackPanel>
+</Window>

@@ -1,0 +1,1511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="accountantBills">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="insuranceCompanyCode" Type="int" Nullable="false" />
+          <Property Name="accountantCode" Type="int" Nullable="false" />
+          <Property Name="summ" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="accountants">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronymic" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastenter" Type="datetime" Nullable="false" />
+          <Property Name="userLogin" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="accountantServices">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accountantCode" Type="int" Nullable="false" />
+          <Property Name="serviceName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="administrators">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userLogin" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analyzerOperations">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="analyzerCode" Type="int" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+          <Property Name="workTime" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analyzers">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="enterHistory">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userLogin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userType" Type="int" Nullable="false" />
+          <Property Name="dateTimeSeen" Type="datetime" Nullable="false" />
+          <Property Name="success" Type="bit" />
+        </EntityType>
+        <EntityType Name="insuranceCompany">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="INN" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="currentAccount" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BIC" Type="varchar" MaxLength="9" Nullable="false" />
+        </EntityType>
+        <EntityType Name="insuranceTypes">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="laborants">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronymic" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastenter" Type="datetime" />
+          <Property Name="userLogin" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="laborantServices">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serviceCode" Type="int" Nullable="false" />
+          <Property Name="laborantCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="laboratoryServices">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serviceType" Type="int" Nullable="false" />
+          <Property Name="time" Type="time" Precision="7" />
+          <Property Name="deviation" Type="float" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderStatusCode" Type="int" Nullable="false" />
+          <Property Name="timeToComplete" Type="int" Nullable="false" />
+          <Property Name="dateTime" Type="datetime" Nullable="false" />
+          <Property Name="patientCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orderStatuses">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="statusName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="passport">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" Nullable="false" />
+          <Property Name="series" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="number" Type="nvarchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="patients">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronymic" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateOfBirth" Type="date" />
+          <Property Name="passportCode" Type="int" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="11" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="insuranceNumber" Type="varchar" MaxLength="50" />
+          <Property Name="insuranceTypeCode" Type="int" />
+          <Property Name="incuranceCompanyCode" Type="int" />
+        </EntityType>
+        <EntityType Name="providedServises">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serviceCode" Type="int" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+          <Property Name="laborantCode" Type="int" Nullable="false" />
+          <Property Name="analyzerCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="services">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="servicesInOrder">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="service" Type="int" Nullable="false" />
+          <Property Name="count" Type="int" Nullable="false" />
+          <Property Name="order" Type="int" Nullable="false" />
+          <Property Name="serviceStatusCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="serviceStatuses">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="types">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ip" Type="varchar" MaxLength="50" />
+          <Property Name="lastenter" Type="date" />
+          <Property Name="type" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_accountantBills_accountants">
+          <End Role="accountants" Type="Self.accountants" Multiplicity="1" />
+          <End Role="accountantBills" Type="Self.accountantBills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accountants">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="accountantBills">
+              <PropertyRef Name="accountantCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_accountantBills_insuranceCompany">
+          <End Role="insuranceCompany" Type="Self.insuranceCompany" Multiplicity="1" />
+          <End Role="accountantBills" Type="Self.accountantBills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="insuranceCompany">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="accountantBills">
+              <PropertyRef Name="insuranceCompanyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_accountants_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="accountants" Type="Self.accountants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="accountants">
+              <PropertyRef Name="userLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_accountantServices_accountants">
+          <End Role="accountants" Type="Self.accountants" Multiplicity="1" />
+          <End Role="accountantServices" Type="Self.accountantServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accountants">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="accountantServices">
+              <PropertyRef Name="accountantCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_administrators_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="administrators" Type="Self.administrators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="administrators">
+              <PropertyRef Name="userLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_analyzerOperations_analyzers">
+          <End Role="analyzers" Type="Self.analyzers" Multiplicity="1" />
+          <End Role="analyzerOperations" Type="Self.analyzerOperations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analyzers">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="analyzerOperations">
+              <PropertyRef Name="analyzerCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_enterHistory_types">
+          <End Role="types" Type="Self.types" Multiplicity="1" />
+          <End Role="enterHistory" Type="Self.enterHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="types">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="enterHistory">
+              <PropertyRef Name="userType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_enterHistory_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="enterHistory" Type="Self.enterHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="enterHistory">
+              <PropertyRef Name="userLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_laborants_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="laborants" Type="Self.laborants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="laborants">
+              <PropertyRef Name="userLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_laborantServices_laborants">
+          <End Role="laborants" Type="Self.laborants" Multiplicity="1" />
+          <End Role="laborantServices" Type="Self.laborantServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="laborants">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="laborantServices">
+              <PropertyRef Name="laborantCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_laborantServices_laboratoryServices">
+          <End Role="laboratoryServices" Type="Self.laboratoryServices" Multiplicity="1" />
+          <End Role="laborantServices" Type="Self.laborantServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="laboratoryServices">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="laborantServices">
+              <PropertyRef Name="serviceCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_laboratoryServices_services">
+          <End Role="services" Type="Self.services" Multiplicity="1" />
+          <End Role="laboratoryServices" Type="Self.laboratoryServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="laboratoryServices">
+              <PropertyRef Name="serviceType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_orderStatuses">
+          <End Role="orderStatuses" Type="Self.orderStatuses" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orderStatuses">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="orderStatusCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_insuranceCompany">
+          <End Role="insuranceCompany" Type="Self.insuranceCompany" Multiplicity="0..1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="insuranceCompany">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients">
+              <PropertyRef Name="incuranceCompanyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_insuranceTypes">
+          <End Role="insuranceTypes" Type="Self.insuranceTypes" Multiplicity="0..1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="insuranceTypes">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients">
+              <PropertyRef Name="insuranceTypeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_orders">
+          <End Role="patients" Type="Self.patients" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patients">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="patientCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_passport">
+          <End Role="passport" Type="Self.passport" Multiplicity="0..1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="passport">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients">
+              <PropertyRef Name="passportCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_providedServises_analyzers">
+          <End Role="analyzers" Type="Self.analyzers" Multiplicity="1" />
+          <End Role="providedServises" Type="Self.providedServises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analyzers">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="providedServises">
+              <PropertyRef Name="analyzerCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_providedServises_laborants">
+          <End Role="laborants" Type="Self.laborants" Multiplicity="1" />
+          <End Role="providedServises" Type="Self.providedServises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="laborants">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="providedServises">
+              <PropertyRef Name="laborantCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_servicesInOrder_orders">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="servicesInOrder" Type="Self.servicesInOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="servicesInOrder">
+              <PropertyRef Name="order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_servicesInOrder_services">
+          <End Role="services" Type="Self.services" Multiplicity="1" />
+          <End Role="servicesInOrder" Type="Self.servicesInOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="servicesInOrder">
+              <PropertyRef Name="service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_servicesInOrder_seviceStatuses">
+          <End Role="serviceStatuses" Type="Self.serviceStatuses" Multiplicity="1" />
+          <End Role="servicesInOrder" Type="Self.servicesInOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="serviceStatuses">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="servicesInOrder">
+              <PropertyRef Name="serviceStatusCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_types">
+          <End Role="types" Type="Self.types" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="types">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="accountantBills" EntityType="Self.accountantBills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="accountants" EntityType="Self.accountants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="accountantServices" EntityType="Self.accountantServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="administrators" EntityType="Self.administrators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="analyzerOperations" EntityType="Self.analyzerOperations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="analyzers" EntityType="Self.analyzers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="enterHistory" EntityType="Self.enterHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="insuranceCompany" EntityType="Self.insuranceCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="insuranceTypes" EntityType="Self.insuranceTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="laborants" EntityType="Self.laborants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="laborantServices" EntityType="Self.laborantServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="laboratoryServices" EntityType="Self.laboratoryServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orderStatuses" EntityType="Self.orderStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="passport" EntityType="Self.passport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="patients" EntityType="Self.patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="providedServises" EntityType="Self.providedServises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="services" EntityType="Self.services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="servicesInOrder" EntityType="Self.servicesInOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="serviceStatuses" EntityType="Self.serviceStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="types" EntityType="Self.types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_accountantBills_accountants" Association="Self.FK_accountantBills_accountants">
+            <End Role="accountants" EntitySet="accountants" />
+            <End Role="accountantBills" EntitySet="accountantBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_accountantBills_insuranceCompany" Association="Self.FK_accountantBills_insuranceCompany">
+            <End Role="insuranceCompany" EntitySet="insuranceCompany" />
+            <End Role="accountantBills" EntitySet="accountantBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_accountants_users" Association="Self.FK_accountants_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="accountants" EntitySet="accountants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_accountantServices_accountants" Association="Self.FK_accountantServices_accountants">
+            <End Role="accountants" EntitySet="accountants" />
+            <End Role="accountantServices" EntitySet="accountantServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_administrators_users" Association="Self.FK_administrators_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="administrators" EntitySet="administrators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_analyzerOperations_analyzers" Association="Self.FK_analyzerOperations_analyzers">
+            <End Role="analyzers" EntitySet="analyzers" />
+            <End Role="analyzerOperations" EntitySet="analyzerOperations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_enterHistory_types" Association="Self.FK_enterHistory_types">
+            <End Role="types" EntitySet="types" />
+            <End Role="enterHistory" EntitySet="enterHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_enterHistory_users" Association="Self.FK_enterHistory_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="enterHistory" EntitySet="enterHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_laborants_users" Association="Self.FK_laborants_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="laborants" EntitySet="laborants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_laborantServices_laborants" Association="Self.FK_laborantServices_laborants">
+            <End Role="laborants" EntitySet="laborants" />
+            <End Role="laborantServices" EntitySet="laborantServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_laborantServices_laboratoryServices" Association="Self.FK_laborantServices_laboratoryServices">
+            <End Role="laboratoryServices" EntitySet="laboratoryServices" />
+            <End Role="laborantServices" EntitySet="laborantServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_laboratoryServices_services" Association="Self.FK_laboratoryServices_services">
+            <End Role="services" EntitySet="services" />
+            <End Role="laboratoryServices" EntitySet="laboratoryServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_orderStatuses" Association="Self.FK_orders_orderStatuses">
+            <End Role="orderStatuses" EntitySet="orderStatuses" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_insuranceCompany" Association="Self.FK_patients_insuranceCompany">
+            <End Role="insuranceCompany" EntitySet="insuranceCompany" />
+            <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_insuranceTypes" Association="Self.FK_patients_insuranceTypes">
+            <End Role="insuranceTypes" EntitySet="insuranceTypes" />
+            <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_orders" Association="Self.FK_patients_orders">
+            <End Role="patients" EntitySet="patients" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_passport" Association="Self.FK_patients_passport">
+            <End Role="passport" EntitySet="passport" />
+            <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_providedServises_analyzers" Association="Self.FK_providedServises_analyzers">
+            <End Role="analyzers" EntitySet="analyzers" />
+            <End Role="providedServises" EntitySet="providedServises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_providedServises_laborants" Association="Self.FK_providedServises_laborants">
+            <End Role="laborants" EntitySet="laborants" />
+            <End Role="providedServises" EntitySet="providedServises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_servicesInOrder_orders" Association="Self.FK_servicesInOrder_orders">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="servicesInOrder" EntitySet="servicesInOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_servicesInOrder_services" Association="Self.FK_servicesInOrder_services">
+            <End Role="services" EntitySet="services" />
+            <End Role="servicesInOrder" EntitySet="servicesInOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_servicesInOrder_seviceStatuses" Association="Self.FK_servicesInOrder_seviceStatuses">
+            <End Role="serviceStatuses" EntitySet="serviceStatuses" />
+            <End Role="servicesInOrder" EntitySet="servicesInOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_types" Association="Self.FK_users_types">
+            <End Role="types" EntitySet="types" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="accountantBills">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="insuranceCompanyCode" Type="Int32" Nullable="false" />
+          <Property Name="accountantCode" Type="Int32" Nullable="false" />
+          <Property Name="summ" Type="Double" Nullable="false" />
+          <NavigationProperty Name="accountants" Relationship="Self.FK_accountantBills_accountants" FromRole="accountantBills" ToRole="accountants" />
+          <NavigationProperty Name="insuranceCompany" Relationship="Self.FK_accountantBills_insuranceCompany" FromRole="accountantBills" ToRole="insuranceCompany" />
+        </EntityType>
+        <EntityType Name="accountants">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastenter" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="accountantBills" Relationship="Self.FK_accountantBills_accountants" FromRole="accountants" ToRole="accountantBills" />
+          <NavigationProperty Name="accountantServices" Relationship="Self.FK_accountantServices_accountants" FromRole="accountants" ToRole="accountantServices" />
+          <Property Name="userLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="Model.FK_accountants_users" FromRole="accountants" ToRole="users" />
+        </EntityType>
+        <EntityType Name="accountantServices">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountantCode" Type="Int32" Nullable="false" />
+          <Property Name="serviceName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="accountants" Relationship="Self.FK_accountantServices_accountants" FromRole="accountantServices" ToRole="accountants" />
+        </EntityType>
+        <EntityType Name="administrators">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="Model.FK_administrators_users" FromRole="administrators" ToRole="users" />
+        </EntityType>
+        <EntityType Name="analyzerOperations">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="analyzerCode" Type="Int32" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="workTime" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="analyzers" Relationship="Self.FK_analyzerOperations_analyzers" FromRole="analyzerOperations" ToRole="analyzers" />
+        </EntityType>
+        <EntityType Name="analyzers">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="analyzerOperations" Relationship="Self.FK_analyzerOperations_analyzers" FromRole="analyzers" ToRole="analyzerOperations" />
+          <NavigationProperty Name="providedServises" Relationship="Self.FK_providedServises_analyzers" FromRole="analyzers" ToRole="providedServises" />
+        </EntityType>
+        <EntityType Name="insuranceCompany">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="INN" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="currentAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BIC" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="accountantBills" Relationship="Self.FK_accountantBills_insuranceCompany" FromRole="insuranceCompany" ToRole="accountantBills" />
+          <NavigationProperty Name="patients" Relationship="Self.FK_patients_insuranceCompany" FromRole="insuranceCompany" ToRole="patients" />
+        </EntityType>
+        <EntityType Name="insuranceTypes">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="patients" Relationship="Self.FK_patients_insuranceTypes" FromRole="insuranceTypes" ToRole="patients" />
+        </EntityType>
+        <EntityType Name="laborants">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastenter" Type="DateTime" Nullable="true" Precision="3" />
+          <NavigationProperty Name="laborantServices" Relationship="Self.FK_laborantServices_laborants" FromRole="laborants" ToRole="laborantServices" />
+          <NavigationProperty Name="providedServises" Relationship="Self.FK_providedServises_laborants" FromRole="laborants" ToRole="providedServises" />
+          <Property Name="userLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="Model.FK_laborants_users" FromRole="laborants" ToRole="users" />
+        </EntityType>
+        <EntityType Name="laborantServices">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serviceCode" Type="Int32" Nullable="false" />
+          <Property Name="laborantCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="laborants" Relationship="Self.FK_laborantServices_laborants" FromRole="laborantServices" ToRole="laborants" />
+          <NavigationProperty Name="laboratoryServices" Relationship="Self.FK_laborantServices_laboratoryServices" FromRole="laborantServices" ToRole="laboratoryServices" />
+        </EntityType>
+        <EntityType Name="laboratoryServices">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serviceType" Type="Int32" Nullable="false" />
+          <Property Name="time" Type="Time" Precision="7" />
+          <Property Name="deviation" Type="Double" />
+          <NavigationProperty Name="laborantServices" Relationship="Self.FK_laborantServices_laboratoryServices" FromRole="laboratoryServices" ToRole="laborantServices" />
+          <NavigationProperty Name="services" Relationship="Self.FK_laboratoryServices_services" FromRole="laboratoryServices" ToRole="services" />
+          <NavigationProperty Name="servicesInOrder" Relationship="Model.FK_servicesInOrder_laboratoryServices" FromRole="laboratoryServices" ToRole="servicesInOrder" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderStatusCode" Type="Int32" Nullable="false" />
+          <Property Name="timeToComplete" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="orderStatuses" Relationship="Self.FK_orders_orderStatuses" FromRole="orders" ToRole="orderStatuses" />
+          <NavigationProperty Name="servicesInOrder" Relationship="Self.FK_servicesInOrder_orders" FromRole="orders" ToRole="servicesInOrder" />
+          <Property Name="dateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="patientCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="patients" Relationship="Model.FK_patients_orders" FromRole="orders" ToRole="patients" />
+        </EntityType>
+        <EntityType Name="orderStatuses">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="statusName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_orders_orderStatuses" FromRole="orderStatuses" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="passport">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" />
+          <Property Name="series" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="number" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="patients" Relationship="Self.FK_patients_passport" FromRole="passport" ToRole="patients" />
+        </EntityType>
+        <EntityType Name="patients">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="passportCode" Type="Int32" />
+          <Property Name="phoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="insuranceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="insuranceTypeCode" Type="Int32" />
+          <Property Name="incuranceCompanyCode" Type="Int32" />
+          <NavigationProperty Name="insuranceCompany" Relationship="Self.FK_patients_insuranceCompany" FromRole="patients" ToRole="insuranceCompany" />
+          <NavigationProperty Name="insuranceTypes" Relationship="Self.FK_patients_insuranceTypes" FromRole="patients" ToRole="insuranceTypes" />
+          <NavigationProperty Name="passport" Relationship="Self.FK_patients_passport" FromRole="patients" ToRole="passport" />
+          <NavigationProperty Name="orders" Relationship="Model.FK_patients_orders" FromRole="patients" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="providedServises">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serviceCode" Type="Int32" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="laborantCode" Type="Int32" Nullable="false" />
+          <Property Name="analyzerCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="analyzers" Relationship="Self.FK_providedServises_analyzers" FromRole="providedServises" ToRole="analyzers" />
+          <NavigationProperty Name="laborants" Relationship="Self.FK_providedServises_laborants" FromRole="providedServises" ToRole="laborants" />
+        </EntityType>
+        <EntityType Name="services">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="laboratoryServices" Relationship="Self.FK_laboratoryServices_services" FromRole="services" ToRole="laboratoryServices" />
+          <NavigationProperty Name="servicesInOrder" Relationship="Model.FK_servicesInOrder_services" FromRole="services" ToRole="servicesInOrder" />
+        </EntityType>
+        <EntityType Name="servicesInOrder">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="service" Type="Int32" Nullable="false" />
+          <Property Name="count" Type="Int32" Nullable="false" />
+          <Property Name="order" Type="Int32" Nullable="false" />
+          <Property Name="serviceStatusCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_servicesInOrder_orders" FromRole="servicesInOrder" ToRole="orders" />
+          <NavigationProperty Name="laboratoryServices" Relationship="Model.FK_servicesInOrder_laboratoryServices" FromRole="servicesInOrder" ToRole="laboratoryServices" />
+          <NavigationProperty Name="services" Relationship="Model.FK_servicesInOrder_services" FromRole="servicesInOrder" ToRole="services" />
+          <NavigationProperty Name="serviceStatuses" Relationship="Model.FK_servicesInOrder_seviceStatuses1" FromRole="servicesInOrder" ToRole="serviceStatuses" />
+        </EntityType>
+        <EntityType Name="types">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="users" Relationship="Self.FK_users_types" FromRole="types" ToRole="users" />
+          <NavigationProperty Name="enterHistory" Relationship="Model.FK_enterHistory_types" FromRole="types" ToRole="enterHistory" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastenter" Type="DateTime" Precision="0" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="types" Relationship="Self.FK_users_types" FromRole="users" ToRole="types" />
+          <NavigationProperty Name="enterHistory" Relationship="Model.FK_enterHistory_users" FromRole="users" ToRole="enterHistory" />
+          <NavigationProperty Name="administrators" Relationship="Model.FK_administrators_users" FromRole="users" ToRole="administrators" />
+          <NavigationProperty Name="laborants" Relationship="Model.FK_laborants_users" FromRole="users" ToRole="laborants" />
+          <NavigationProperty Name="accountants" Relationship="Model.FK_accountants_users" FromRole="users" ToRole="accountants" />
+        </EntityType>
+        <Association Name="FK_accountantBills_accountants">
+          <End Role="accountants" Type="Self.accountants" Multiplicity="1" />
+          <End Role="accountantBills" Type="Self.accountantBills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accountants">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="accountantBills">
+              <PropertyRef Name="accountantCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_accountantBills_insuranceCompany">
+          <End Role="insuranceCompany" Type="Self.insuranceCompany" Multiplicity="1" />
+          <End Role="accountantBills" Type="Self.accountantBills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="insuranceCompany">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="accountantBills">
+              <PropertyRef Name="insuranceCompanyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_accountantServices_accountants">
+          <End Role="accountants" Type="Self.accountants" Multiplicity="1" />
+          <End Role="accountantServices" Type="Self.accountantServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accountants">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="accountantServices">
+              <PropertyRef Name="accountantCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_analyzerOperations_analyzers">
+          <End Role="analyzers" Type="Self.analyzers" Multiplicity="1" />
+          <End Role="analyzerOperations" Type="Self.analyzerOperations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analyzers">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="analyzerOperations">
+              <PropertyRef Name="analyzerCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_providedServises_analyzers">
+          <End Role="analyzers" Type="Self.analyzers" Multiplicity="1" />
+          <End Role="providedServises" Type="Self.providedServises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analyzers">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="providedServises">
+              <PropertyRef Name="analyzerCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_insuranceCompany">
+          <End Role="insuranceCompany" Type="Self.insuranceCompany" Multiplicity="0..1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="insuranceCompany">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients">
+              <PropertyRef Name="incuranceCompanyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_insuranceTypes">
+          <End Role="insuranceTypes" Type="Self.insuranceTypes" Multiplicity="0..1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="insuranceTypes">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients">
+              <PropertyRef Name="insuranceTypeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_laborantServices_laborants">
+          <End Role="laborants" Type="Self.laborants" Multiplicity="1" />
+          <End Role="laborantServices" Type="Self.laborantServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="laborants">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="laborantServices">
+              <PropertyRef Name="laborantCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_providedServises_laborants">
+          <End Role="laborants" Type="Self.laborants" Multiplicity="1" />
+          <End Role="providedServises" Type="Self.providedServises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="laborants">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="providedServises">
+              <PropertyRef Name="laborantCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_laborantServices_laboratoryServices">
+          <End Role="laboratoryServices" Type="Self.laboratoryServices" Multiplicity="1" />
+          <End Role="laborantServices" Type="Self.laborantServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="laboratoryServices">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="laborantServices">
+              <PropertyRef Name="serviceCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_laboratoryServices_services">
+          <End Role="services" Type="Self.services" Multiplicity="1" />
+          <End Role="laboratoryServices" Type="Self.laboratoryServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="laboratoryServices">
+              <PropertyRef Name="serviceType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_orderStatuses">
+          <End Role="orderStatuses" Type="Self.orderStatuses" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orderStatuses">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="orderStatusCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_servicesInOrder_orders">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="servicesInOrder" Type="Self.servicesInOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="servicesInOrder">
+              <PropertyRef Name="order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_passport">
+          <End Role="passport" Type="Self.passport" Multiplicity="0..1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="passport">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients">
+              <PropertyRef Name="passportCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_types">
+          <End Role="types" Type="Self.types" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="types">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accountantBills" EntityType="Self.accountantBills" />
+          <EntitySet Name="accountants" EntityType="Self.accountants" />
+          <EntitySet Name="accountantServices" EntityType="Self.accountantServices" />
+          <EntitySet Name="administrators" EntityType="Self.administrators" />
+          <EntitySet Name="analyzerOperations" EntityType="Self.analyzerOperations" />
+          <EntitySet Name="analyzers" EntityType="Self.analyzers" />
+          <EntitySet Name="insuranceCompany" EntityType="Self.insuranceCompany" />
+          <EntitySet Name="insuranceTypes" EntityType="Self.insuranceTypes" />
+          <EntitySet Name="laborants" EntityType="Self.laborants" />
+          <EntitySet Name="laborantServices" EntityType="Self.laborantServices" />
+          <EntitySet Name="laboratoryServices" EntityType="Self.laboratoryServices" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="orderStatuses" EntityType="Self.orderStatuses" />
+          <EntitySet Name="passport" EntityType="Self.passport" />
+          <EntitySet Name="patients" EntityType="Self.patients" />
+          <EntitySet Name="providedServises" EntityType="Self.providedServises" />
+          <EntitySet Name="services" EntityType="Self.services" />
+          <EntitySet Name="servicesInOrder" EntityType="Self.servicesInOrder" />
+          <EntitySet Name="types" EntityType="Self.types" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK_accountantBills_accountants" Association="Self.FK_accountantBills_accountants">
+            <End Role="accountants" EntitySet="accountants" />
+            <End Role="accountantBills" EntitySet="accountantBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_accountantBills_insuranceCompany" Association="Self.FK_accountantBills_insuranceCompany">
+            <End Role="insuranceCompany" EntitySet="insuranceCompany" />
+            <End Role="accountantBills" EntitySet="accountantBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_accountantServices_accountants" Association="Self.FK_accountantServices_accountants">
+            <End Role="accountants" EntitySet="accountants" />
+            <End Role="accountantServices" EntitySet="accountantServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_analyzerOperations_analyzers" Association="Self.FK_analyzerOperations_analyzers">
+            <End Role="analyzers" EntitySet="analyzers" />
+            <End Role="analyzerOperations" EntitySet="analyzerOperations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_providedServises_analyzers" Association="Self.FK_providedServises_analyzers">
+            <End Role="analyzers" EntitySet="analyzers" />
+            <End Role="providedServises" EntitySet="providedServises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_insuranceCompany" Association="Self.FK_patients_insuranceCompany">
+            <End Role="insuranceCompany" EntitySet="insuranceCompany" />
+            <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_insuranceTypes" Association="Self.FK_patients_insuranceTypes">
+            <End Role="insuranceTypes" EntitySet="insuranceTypes" />
+            <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_laborantServices_laborants" Association="Self.FK_laborantServices_laborants">
+            <End Role="laborants" EntitySet="laborants" />
+            <End Role="laborantServices" EntitySet="laborantServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_providedServises_laborants" Association="Self.FK_providedServises_laborants">
+            <End Role="laborants" EntitySet="laborants" />
+            <End Role="providedServises" EntitySet="providedServises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_laborantServices_laboratoryServices" Association="Self.FK_laborantServices_laboratoryServices">
+            <End Role="laboratoryServices" EntitySet="laboratoryServices" />
+            <End Role="laborantServices" EntitySet="laborantServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_laboratoryServices_services" Association="Self.FK_laboratoryServices_services">
+            <End Role="services" EntitySet="services" />
+            <End Role="laboratoryServices" EntitySet="laboratoryServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_orderStatuses" Association="Self.FK_orders_orderStatuses">
+            <End Role="orderStatuses" EntitySet="orderStatuses" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_servicesInOrder_orders" Association="Self.FK_servicesInOrder_orders">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="servicesInOrder" EntitySet="servicesInOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_passport" Association="Self.FK_patients_passport">
+            <End Role="passport" EntitySet="passport" />
+            <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_types" Association="Self.FK_users_types">
+            <End Role="types" EntitySet="types" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <EntitySet Name="enterHistory" EntityType="Model.enterHistory" />
+          <AssociationSet Name="FK_enterHistory_types" Association="Model.FK_enterHistory_types">
+            <End Role="types" EntitySet="types" />
+            <End Role="enterHistory" EntitySet="enterHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_enterHistory_users" Association="Model.FK_enterHistory_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="enterHistory" EntitySet="enterHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_servicesInOrder_laboratoryServices" Association="Model.FK_servicesInOrder_laboratoryServices">
+            <End Role="laboratoryServices" EntitySet="laboratoryServices" />
+            <End Role="servicesInOrder" EntitySet="servicesInOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_orders" Association="Model.FK_patients_orders">
+            <End Role="patients" EntitySet="patients" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_servicesInOrder_services" Association="Model.FK_servicesInOrder_services">
+            <End Role="services" EntitySet="services" />
+            <End Role="servicesInOrder" EntitySet="servicesInOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_administrators_users" Association="Model.FK_administrators_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="administrators" EntitySet="administrators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_laborants_users" Association="Model.FK_laborants_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="laborants" EntitySet="laborants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_accountants_users" Association="Model.FK_accountants_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="accountants" EntitySet="accountants" />
+          </AssociationSet>
+          <EntitySet Name="serviceStatuses" EntityType="Model.serviceStatuses" />
+          <AssociationSet Name="FK_servicesInOrder_seviceStatuses1" Association="Model.FK_servicesInOrder_seviceStatuses1">
+            <End Role="serviceStatuses" EntitySet="serviceStatuses" />
+            <End Role="servicesInOrder" EntitySet="servicesInOrder" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="enterHistory">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userType" Type="Int32" Nullable="false" />
+          <Property Name="dateTimeSeen" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="types" Relationship="Model.FK_enterHistory_types" FromRole="enterHistory" ToRole="types" />
+          <NavigationProperty Name="users" Relationship="Model.FK_enterHistory_users" FromRole="enterHistory" ToRole="users" />
+          <Property Name="success" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_enterHistory_types">
+          <End Type="Model.types" Role="types" Multiplicity="1" />
+          <End Type="Model.enterHistory" Role="enterHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="types">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="enterHistory">
+              <PropertyRef Name="userType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_enterHistory_users">
+          <End Type="Model.users" Role="users" Multiplicity="1" />
+          <End Type="Model.enterHistory" Role="enterHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="enterHistory">
+              <PropertyRef Name="userLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_servicesInOrder_laboratoryServices">
+          <End Type="Model.laboratoryServices" Role="laboratoryServices" Multiplicity="1" />
+          <End Type="Model.servicesInOrder" Role="servicesInOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="laboratoryServices">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="servicesInOrder">
+              <PropertyRef Name="service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_orders">
+          <End Type="Model.patients" Role="patients" Multiplicity="1" />
+          <End Type="Model.orders" Role="orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patients">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="patientCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_servicesInOrder_services">
+          <End Type="Model.services" Role="services" Multiplicity="1" />
+          <End Type="Model.servicesInOrder" Role="servicesInOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="servicesInOrder">
+              <PropertyRef Name="service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_administrators_users">
+          <End Type="Model.users" Role="users" Multiplicity="1" />
+          <End Type="Model.administrators" Role="administrators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="administrators">
+              <PropertyRef Name="userLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_laborants_users">
+          <End Type="Model.users" Role="users" Multiplicity="1" />
+          <End Type="Model.laborants" Role="laborants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="laborants">
+              <PropertyRef Name="userLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_accountants_users">
+          <End Type="Model.users" Role="users" Multiplicity="1" />
+          <End Type="Model.accountants" Role="accountants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="accountants">
+              <PropertyRef Name="userLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="serviceStatuses">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="servicesInOrder" Relationship="Model.FK_servicesInOrder_seviceStatuses1" FromRole="serviceStatuses" ToRole="servicesInOrder" />
+        </EntityType>
+        <Association Name="FK_servicesInOrder_seviceStatuses1">
+          <End Type="Model.serviceStatuses" Role="serviceStatuses" Multiplicity="1" />
+          <End Type="Model.servicesInOrder" Role="servicesInOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="serviceStatuses">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="servicesInOrder">
+              <PropertyRef Name="serviceStatusCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="accountantBills">
+            <EntityTypeMapping TypeName="Model.accountantBills">
+              <MappingFragment StoreEntitySet="accountantBills">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="insuranceCompanyCode" ColumnName="insuranceCompanyCode" />
+                <ScalarProperty Name="accountantCode" ColumnName="accountantCode" />
+                <ScalarProperty Name="summ" ColumnName="summ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="accountants">
+            <EntityTypeMapping TypeName="Model.accountants">
+              <MappingFragment StoreEntitySet="accountants">
+                <ScalarProperty Name="userLogin" ColumnName="userLogin" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="lastenter" ColumnName="lastenter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="accountantServices">
+            <EntityTypeMapping TypeName="Model.accountantServices">
+              <MappingFragment StoreEntitySet="accountantServices">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="accountantCode" ColumnName="accountantCode" />
+                <ScalarProperty Name="serviceName" ColumnName="serviceName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="administrators">
+            <EntityTypeMapping TypeName="Model.administrators">
+              <MappingFragment StoreEntitySet="administrators">
+                <ScalarProperty Name="userLogin" ColumnName="userLogin" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analyzerOperations">
+            <EntityTypeMapping TypeName="Model.analyzerOperations">
+              <MappingFragment StoreEntitySet="analyzerOperations">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="analyzerCode" ColumnName="analyzerCode" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="workTime" ColumnName="workTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analyzers">
+            <EntityTypeMapping TypeName="Model.analyzers">
+              <MappingFragment StoreEntitySet="analyzers">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="insuranceCompany">
+            <EntityTypeMapping TypeName="Model.insuranceCompany">
+              <MappingFragment StoreEntitySet="insuranceCompany">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="currentAccount" ColumnName="currentAccount" />
+                <ScalarProperty Name="BIC" ColumnName="BIC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="insuranceTypes">
+            <EntityTypeMapping TypeName="Model.insuranceTypes">
+              <MappingFragment StoreEntitySet="insuranceTypes">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="laborants">
+            <EntityTypeMapping TypeName="Model.laborants">
+              <MappingFragment StoreEntitySet="laborants">
+                <ScalarProperty Name="userLogin" ColumnName="userLogin" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="lastenter" ColumnName="lastenter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="laborantServices">
+            <EntityTypeMapping TypeName="Model.laborantServices">
+              <MappingFragment StoreEntitySet="laborantServices">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="serviceCode" ColumnName="serviceCode" />
+                <ScalarProperty Name="laborantCode" ColumnName="laborantCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="laboratoryServices">
+            <EntityTypeMapping TypeName="Model.laboratoryServices">
+              <MappingFragment StoreEntitySet="laboratoryServices">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="serviceType" ColumnName="serviceType" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="deviation" ColumnName="deviation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="Model.orders">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="patientCode" ColumnName="patientCode" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="orderStatusCode" ColumnName="orderStatusCode" />
+                <ScalarProperty Name="timeToComplete" ColumnName="timeToComplete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderStatuses">
+            <EntityTypeMapping TypeName="Model.orderStatuses">
+              <MappingFragment StoreEntitySet="orderStatuses">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="statusName" ColumnName="statusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="passport">
+            <EntityTypeMapping TypeName="Model.passport">
+              <MappingFragment StoreEntitySet="passport">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="series" ColumnName="series" />
+                <ScalarProperty Name="number" ColumnName="number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patients">
+            <EntityTypeMapping TypeName="Model.patients">
+              <MappingFragment StoreEntitySet="patients">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+                <ScalarProperty Name="passportCode" ColumnName="passportCode" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="insuranceNumber" ColumnName="insuranceNumber" />
+                <ScalarProperty Name="insuranceTypeCode" ColumnName="insuranceTypeCode" />
+                <ScalarProperty Name="incuranceCompanyCode" ColumnName="incuranceCompanyCode" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="providedServises">
+            <EntityTypeMapping TypeName="Model.providedServises">
+              <MappingFragment StoreEntitySet="providedServises">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="serviceCode" ColumnName="serviceCode" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="laborantCode" ColumnName="laborantCode" />
+                <ScalarProperty Name="analyzerCode" ColumnName="analyzerCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="services">
+            <EntityTypeMapping TypeName="Model.services">
+              <MappingFragment StoreEntitySet="services">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servicesInOrder">
+            <EntityTypeMapping TypeName="Model.servicesInOrder">
+              <MappingFragment StoreEntitySet="servicesInOrder">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="service" ColumnName="service" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="serviceStatusCode" ColumnName="serviceStatusCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="types">
+            <EntityTypeMapping TypeName="Model.types">
+              <MappingFragment StoreEntitySet="types">
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="Model.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="lastenter" ColumnName="lastenter" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="enterHistory">
+            <EntityTypeMapping TypeName="Model.enterHistory">
+              <MappingFragment StoreEntitySet="enterHistory">
+                <ScalarProperty Name="success" ColumnName="success" />
+                <ScalarProperty Name="dateTimeSeen" ColumnName="dateTimeSeen" />
+                <ScalarProperty Name="userType" ColumnName="userType" />
+                <ScalarProperty Name="userLogin" ColumnName="userLogin" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="serviceStatuses">
+            <EntityTypeMapping TypeName="Model.serviceStatuses">
+              <MappingFragment StoreEntitySet="serviceStatuses">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

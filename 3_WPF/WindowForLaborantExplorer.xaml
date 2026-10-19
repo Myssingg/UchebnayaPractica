@@ -1,0 +1,98 @@
+﻿<Window x:Class="_3_WPF.WindowForLaborantExplorer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_3_WPF"
+        mc:Ignorable="d"
+        Title="WindowForLaborantExplorer" Height="550" Width="600"
+        FontFamily="Tahoma" FontSize="14" ResizeMode="NoResize">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="avatar" Height="50" Width="50" Margin="5" Stretch="UniformToFill"/>
+            <WrapPanel Orientation="Vertical">
+                <TextBlock x:Name="userInfo" Margin="5" VerticalAlignment="Center" FontSize="18"/>
+                <TextBlock x:Name="Timer" FontSize="18" FontWeight="Black" VerticalAlignment="Center"/>
+            </WrapPanel>
+        </StackPanel>
+
+        <TabControl Margin="10" Background="Azure">
+            <TabControl.Template>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- 1. Верхняя панель (Заголовки + Кнопка) -->
+                        <DockPanel Grid.Row="0" LastChildFill="False">
+                            <!-- Место, где WPF рисует ваши TabItem (Товары, Заказы) -->
+                            <TabPanel IsItemsHost="True" DockPanel.Dock="Left" VerticalAlignment="Bottom" />
+
+                            <!-- Ваша реальная кнопка "Выйти" справа -->
+                            <Button Content="Выйти" 
+                    Click="TabItem_Click" 
+                    DockPanel.Dock="Right" 
+                    Margin="0,0,5,0"    
+                    Padding="10,2"
+                    Background="#FFECECEC" />
+                        </DockPanel>
+
+                        <!-- 2. Область контента (само содержимое вкладок) -->
+                        <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="0,1,0,0">
+                            <ContentPresenter ContentSource="SelectedContent" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </TabControl.Template>
+
+            <TabItem Header="Работа с анализатором">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <!-- Анализатор -->
+                        <RowDefinition Height="*" />
+                        <!-- Таблица -->
+                        <RowDefinition Height="Auto" />
+                        <!-- Панель управления -->
+                    </Grid.RowDefinitions>
+
+                    <!-- 1. Выбор анализатора -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBlock Text="Анализатор:" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <ComboBox x:Name="comboBox_Analyzers" Width="220"   />
+                    </StackPanel>
+
+                    <!-- 2. Список услуг -->
+                    <DataGrid x:Name="dgServices" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding code}" Width="50" />
+                            <DataGridTextColumn Header="Название услуги" Binding="{Binding name}" Width="*" />
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="150" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!-- 3. Панель управления (ОБЪЕДИНЕННАЯ) -->
+                    <StackPanel Grid.Row="2" Margin="0,10,0,0">
+                        <!-- Прогресс-бар -->
+                        <ProgressBar x:Name="mainProgressBar" Height="20" Margin="0,0,0,5" Minimum="0" Maximum="100" Visibility="Hidden" />
+
+                        <!-- Текст статуса и Кнопки в одной строке -->
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center">
+                                <TextBlock Text="Статус: " Foreground="Gray" />
+                                <TextBlock x:Name="txt_Info" Text="Выберите данные" Foreground="Gray" FontStyle="Italic" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                                <Button x:Name="btnSendToAnalyzer" Content="Отправить" Click="btnSendToAnalyzer_Click" Padding="15,5" Margin="5,0" />
+                                <Button x:Name="btnApprove" Content="Одобрить" Click="btnApprove_Click" Padding="15,5" IsEnabled="False" />
+                            </StackPanel>
+                        </DockPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </StackPanel>
+</Window>

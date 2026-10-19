@@ -1,0 +1,83 @@
+﻿  
+    <Window x:Class="_3_WPF.WindowForLaborant"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_3_WPF"
+            xmlns:materialDesign="http://materialdesigninxaml.net"
+        mc:Ignorable="d"
+        Title="WindowForLaborant" Height="550" Width="600"
+        FontFamily="Tahoma" FontSize="14" ResizeMode="NoResize">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="avatar" Height="50" Width="50" Margin="5" Stretch="UniformToFill"/>
+            <WrapPanel Orientation="Vertical">
+                <TextBlock x:Name="userInfo" Margin="5" VerticalAlignment="Center" FontSize="18"/>
+                <TextBlock x:Name="Timer" FontSize="18" FontWeight="Black" VerticalAlignment="Center"/>
+            </WrapPanel>
+
+        </StackPanel>
+
+        <TabControl Margin="10" Background="Azure">
+            <TabControl.Template>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- 1. Верхняя панель (Заголовки + Кнопка) -->
+                        <DockPanel Grid.Row="0" LastChildFill="False">
+                            <!-- Место, где WPF рисует ваши TabItem (Товары, Заказы) -->
+                            <TabPanel IsItemsHost="True" DockPanel.Dock="Left" VerticalAlignment="Bottom" />
+
+                            <!-- Ваша реальная кнопка "Выйти" справа -->
+                            <Button Content="Выйти" 
+                        Click="TabItem_Click" 
+                        DockPanel.Dock="Right" 
+                        Margin="0,0,5,0"    
+                        Padding="10,2"
+                        Background="#FFECECEC" />
+                        </DockPanel>
+
+                        <!-- 2. Область контента (само содержимое вкладок) -->
+                        <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="0,1,0,0">
+                            <ContentPresenter ContentSource="SelectedContent" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </TabControl.Template>
+
+            <TabItem Header="Принять биоматериал" x:Name="tab_getOrder">
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="Код на пробирке" Padding="5" Margin="45,5,45,5"/>
+                    <TextBox x:Name="code" Padding="5" Width="200" Margin="5"/>
+                    <Button Width="200" Content="Сформировать штрих-код" Padding="5" Margin="5" x:Name="btn_createBarCode" Click="btn_createBarCode_Click"/>
+
+                    <StackPanel Margin="20" Orientation="Vertical" x:Name="patientInfo" Width="250">
+                        <TextBlock Text="Информация о пациенте" FontWeight="Black" Padding="5" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Фамилия" />
+                        <TextBox x:Name="textBox_Surname" Padding="5"/>
+
+                        <TextBlock Text="Имя" />
+                        <TextBox x:Name="textBox_Name" Padding="5"/>
+
+                        <TextBlock Text="Отчество" />
+                        <TextBox x:Name="textBox_Patronymic" Padding="5"/>
+
+                        <Button Content="Перейти к услугам" x:Name="btn_createOrder" Click="btn_createOrder_Click" Padding="5" Margin="5"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Сформировать отчеты" x:Name="tab_reports">
+                <StackPanel>
+
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+
+    </StackPanel>
+</Window>
